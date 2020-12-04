@@ -1,9 +1,9 @@
 <%--
-  Created by IntelliJ IDEA.
-  User: Administrator
+  Created by shenlan
+  User: shenlan
   Date: 2020-11-27
   Time: 13:22
-  To change this template use File | Settings | File Templates.
+  To upload files
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -11,12 +11,10 @@
     <title>Title</title>
 </head>
 <body>
-<form method="post" action="#" id="uploadForm" enctype="multipart/form-data">
-    用户名： <input type="text" name="userName"><br>
-    头像：<input type="file" name="userPic"><br>
-    <input type="button" id="uploadBtn" value="提交"><br>
+
+<form method="post" action="/file/uploadFile.action" enctype="multipart/form-data">
+    <input type="file" name="multipartFile" >
+    <input type="submit" value="提交">
 </form>
-
-
 </body>
 </html>

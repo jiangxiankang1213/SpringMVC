@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+   http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+   http://www.springframework.org/schema/aop
+   http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+   http://www.springframework.org/schema/tx
+   http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+   http://www.springframework.org/schema/context
+   http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+    <!--告訴Spring使用注解的形式-->
+    <!-- <context:annotation-config/>
+      控制反转目标类
+     <bean name="c" class="com.how2java.pojo.Category">
+         <property name="name" value="category 1" />
+     </bean>
+     <bean name="product" class="com.how2java.pojo.Product">
+         <property name="name" value="牙刷"></property>
+        &lt;!&ndash; <property name="category" ref="c"></property>&ndash;&gt;
+     </bean>-->
+    <!--<context:component-scan>: 表示要扫描那个包下面的文件，然后通过注解的形式注入进来-->
+    <context:component-scan base-package="com.how2java.aop"></context:component-scan>
+
+    <!--面向切面编程 SpringAOP 开始-->
+
+    <!--控制反转切面类-->
+    <bean name="loggerAspect" class="com.how2java.aop.aspect.LoggerAspect"></bean>
+
+    <!--控制反转切面类-->
+    <bean name="controllerAspect" class="com.how2java.aop.aspect.controllerAspect"></bean>
+
+
+    <aop:config>
+        <!--<aop:pointcut>:作用： 设置切入点的作用对象和id-->
+        <aop:pointcut id="loggerCutpoint" expression="execution(* com.how2java.aop.service.ProductService.*(..))"></aop:pointcut>
+        <aop:pointcut id="curePoint" expression="execution(* com.how2java.aop.controller.TestController.*(..))"></aop:pointcut>
+
+        <!--<aop:aspect>:作用：设置切面的id-->
+        <aop:aspect ref="loggerAspect" id="logAspect">
+            <aop:before method="before" pointcut-ref="loggerCutpoint"></aop:before>
+            <aop:after method="after" pointcut-ref="loggerCutpoint"></aop:after>
+            <aop:around method="log" pointcut-ref="loggerCutpoint"></aop:around>
+
+        </aop:aspect>
+
+        <aop:aspect ref="controllerAspect" id="conAspect">
+            <aop:before method="testController" pointcut-ref="curePoint"></aop:before>
+        </aop:aspect>
+    </aop:config>
+
+    <!--面向切面编程 SpringAOP 结束-->
+
+</beans>
