@@ -18,9 +18,10 @@ public class TestSpringAop {
 
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
         ProductService productService = (ProductService) context.getBean("productService");
+        //ProductService productService=new ProductService();
         productService.doSomeService();
-        TestController testController=(TestController)context.getBean("testController");
-        testController.testController();
+       /* TestController testController=(TestController)context.getBean("testController");
+        testController.testController();*/
       /*  TestController testController = (TestController) context.getBean("testController");
         testController.testController();*/
     }

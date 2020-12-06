@@ -9,10 +9,6 @@ package com.shenlan.test.DuoTai;
  */
 public class Test {
     public static void main(String[] args) {
-        People p = new Stu();
 
-        Stu s = (Stu)p;
-        p.eat();
-        s.play();
     }
 }
