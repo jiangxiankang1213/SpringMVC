@@ -1,5 +1,7 @@
 package com.shenlan.test.DuoTai;
 
+import java.util.HashMap;
+
 /**
  * @author Jiang-XK
  * @description:
@@ -9,6 +11,6 @@ package com.shenlan.test.DuoTai;
  */
 public class Test {
     public static void main(String[] args) {
-
+        HashMap<String, String> stringStringHashMap = new HashMap<String, String>();
     }
 }
